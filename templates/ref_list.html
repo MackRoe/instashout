@@ -4,12 +4,15 @@
 {% block content %}
 <h1>Profiles</h1>
 
-{% for profile in profiles %}
-    <p>{{ profile.profile_name }}<br>
-    {{ profile.profile_number}}<br>
-    {{ profile.contact_number }}<br>
-    {{ profile.contact_provider }}
-{% endfor %}
+    {% for profile in profiles %}
+        <p>{{ profile.profile_name }}<br>
+        {{ profile.profile_number}}<br>
+        {{ profile.contact_number }}<br>
+        {{ profile.contact_provider }}
+    {% endfor %}
+    <p><a href='/profiles/{{ profile_id }}/edit'>Edit</a></p>
+
 {% endblock %}
+
 
 click image: https://ya-webdesign.com

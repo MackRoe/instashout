@@ -11,4 +11,13 @@
     <p>{{ profile.contact_number }}<br>
         {{ profile.contact_provider }}</p>
 
+    <hr>
+    {{ profile_id }}
+    <p><a href='/profile/{{ profile._id }}/edit'>Edit</a></p>
+    <a href="/">Back</a>
+    <!-- Delete button -->
+    <p><form method='POST' action='/profiles/{{ profile._id }}/delete'>
+    <button type='submit'>Delete</button>
+    </form></p>
+
 {% endblock %}
