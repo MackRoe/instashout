@@ -10,14 +10,14 @@ profiles = db.profiles
 @app.route('/')
 def index():
     """Return homepage."""
-    active_user = ObjectId("5da74fb11620b99d23ada69c")
+    active_user = ObjectId("5da7949afd809f6f7ef35e84")
     return render_template('home.html', msg="🔊 InstaShout 🔊", profile_id=active_user)
 
 """ USER STORIES
-Users can create a profile (new/create)√
+Users can create a profile (new/create) √
 Users can view their profile (show)
-Users can delete their profile (destroy)
-Users can edit their profile (edit/update)
+Users can delete their profile (destroy) √
+Users can edit their profile (edit/update) √
 User can send an InstaShout
 User is informed their InstaShout has been sent
 """
@@ -71,8 +71,14 @@ def profiles_update(profile_id):
         {'_id': ObjectId(profile_id)},
         {'$set': updated_profile})
 
-    active_user = ObjectId("5da74fb11620b99d23ada69c")
+    active_user = ObjectId("5da7949afd809f6f7ef35e84")
     return redirect(url_for('profile_view'), profile_id = active_user)
+
+@app.route('/profiles/<profile_id>/delete', methods=['POST'])
+def profiles_delete(profile_id):
+    """Delete profile"""
+    profiles.delete_one({'_id': ObjectId(profile_id)})
+    return redirect(url_for('/'))
 
 if __name__ == '__main__':
     app.run(debug=True)

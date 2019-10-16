@@ -10,13 +10,15 @@
     <h3> Contact Info </h3>
     <p>{{ profile.contact_number }}<br>
         {{ profile.contact_provider }}</p>
+    <h3> Record Code </h3>
+    {{ profile._id }}
 
     <hr>
     {{ profile_id }}
     <p><a href='/profile/{{ profile._id }}/edit'>Edit</a></p>
     <a href="/">Back</a>
     <!-- Delete button -->
-    <p><form method='POST' action='/profiles/{{ profile._id }}/delete'>
+    <p><form method='POST' action='/profiles/{{ profile_id }}/delete'>
     <button type='submit'>Delete</button>
     </form></p>
 
