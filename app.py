@@ -10,7 +10,8 @@ profiles = db.profiles
 @app.route('/')
 def index():
     """Return homepage."""
-    return render_template('home.html', msg="🔊 InstaShout 🔊")
+    active_user = ObjectId("5da74fb11620b99d23ada69c")
+    return render_template('home.html', msg="🔊 InstaShout 🔊", profile_id=active_user)
 
 """ USER STORIES
 Users can create a profile (new/create)
@@ -20,10 +21,6 @@ Users can edit their profile (edit/update)
 User can send an InstaShout
 User is informed their InstaShout has been sent
 """
-
-# profiles = [
-#     { 'profile_name': 'Test', 'profile_number': '0000000000', 'contact_number': '1111111111', 'contact_provider': "Verizon" }
-# ]
 
 @app.route('/admin')
 def reference_list():
@@ -37,8 +34,6 @@ def profiles_new():
 
 
 @app.route('/admin', methods=['POST'])
-# error: view is not a valid object id
-# it must be a 12-byte input or a 24-character hex string
 def profile_submit():
     """Submit a new profile"""
     profile = {
@@ -49,16 +44,13 @@ def profile_submit():
     }
     print(profile)
     profiles.insert_one(profile)
-    # profile = profiles.find_one({'_id': ObjectId(profile_id)})
-    # error: profile_id is not defined
     return redirect(url_for('reference_list', profile=profile))
 
-# @app.route('/profile/<profile_id>')
-# def profile_view(profile_id):
-#     """Show profile"""
-#     # performs GET from db
-#     profile = profiles.find_one({'_id': ObjectId(profile_id)})
-#     return render_template('profile_view.html', profile=profile)
+@app.route('/profile/<profile_id>')
+def profile_view(profile_id):
+    """Show individual profile"""
+    profile = profiles.find_one({'_id': ObjectId(profile_id)})
+    return render_template('profile_view.html', profile=profile)
 
 if __name__ == '__main__':
     app.run(debug=True)

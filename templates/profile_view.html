@@ -1,7 +1,14 @@
+<!-- templates/profile_view.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ msg }}</h1>
-    <br>
-    {{ profile }}
+
+    <h3> User Info </h3>
+    <p>{{ profile.profile_name }}<br>
+    {{ profile.profile_number }}<br>
+    </p>
+    <h3> Contact Info </h3>
+    <p>{{ profile.contact_number }}<br>
+        {{ profile.contact_provider }}</p>
+
 {% endblock %}
