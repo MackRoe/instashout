@@ -1,0 +1,13 @@
+<!-- templates/ref_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Profiles</h1>
+
+{% for profile in profiles %}
+    <p>{{ profile.profile_name }}<br>
+    {{ profile.profile_number}}<br>
+    {{ profile.contact_number }}<br>
+    {{ profile.contact_provider }}
+{% endfor %}
+{% endblock %}

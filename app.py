@@ -21,30 +21,44 @@ User can send an InstaShout
 User is informed their InstaShout has been sent
 """
 
+# profiles = [
+#     { 'profile_name': 'Test', 'profile_number': '0000000000', 'contact_number': '1111111111', 'contact_provider': "Verizon" }
+# ]
+
+@app.route('/admin')
+def reference_list():
+    """Show all profiles, admin """
+    return render_template('ref_list.html', profiles=profiles.find())
+
 @app.route('/profile/new')
-def profile_new():
+def profiles_new():
     """Create a new profile"""
     return render_template('profile_new.html')
 
-@app.route('/profile/view', methods=['POST'])
+
+@app.route('/admin', methods=['POST'])
+# error: view is not a valid object id
+# it must be a 12-byte input or a 24-character hex string
 def profile_submit():
-    """Submit a new playlist."""
+    """Submit a new profile"""
     profile = {
         'profile_name': request.form.get('profile_name'),
         'profile_number': request.form.get('profile_number'),
         'contact_number': request.form.get('contact_number'),
         'contact_provider': request.form.get('contact_provider')
     }
-    # add info to db with the following:
+    print(profile)
     profiles.insert_one(profile)
-    return redirect(url_for('profile_view'))
+    # profile = profiles.find_one({'_id': ObjectId(profile_id)})
+    # error: profile_id is not defined
+    return redirect(url_for('reference_list', profile=profile))
 
-@app.route('/profile/<profile_id>')
-def profile_view(profile_id):
-    """Show profile"""
-    # performs GET from db
-    profile = profiles.find_one({'_id': ObjectId(profile_id)})
-    return render_template('profile_view.html', profile=profile)
+# @app.route('/profile/<profile_id>')
+# def profile_view(profile_id):
+#     """Show profile"""
+#     # performs GET from db
+#     profile = profiles.find_one({'_id': ObjectId(profile_id)})
+#     return render_template('profile_view.html', profile=profile)
 
 if __name__ == '__main__':
     app.run(debug=True)
