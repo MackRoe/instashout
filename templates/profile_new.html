@@ -1,0 +1,40 @@
+<!-- templates/profile_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/profile/view'>
+    <fieldset>
+    <legend><h2>Create Profile</h2></legend>
+    <!-- TITLE -->
+    <p>
+        <label for='profile_name'>Your Name</label><br>
+        <input type='text' name='profile_name' />
+    </p>
+    <p>
+        <label for='profile_phone'>Your Cellphone Number</label><br>
+        <input type='text' name='profile_phone' />
+    </p>
+    <h3>Emergency Contact</h3>
+    <p>
+        <label for='contact_number'>Your Contact's Cellphone Number</label><br>
+        <input type='text' name='contact_number' />
+    </p>
+    <p>
+        <label for='contact_provider'>Your Contact's Cellphone Service Provider</label><br>
+        Select one:<br>
+        <input type='radio' name='contact_provider' value="Alltel">Alltel<br>
+        <input type='radio' name='contact_provider' value="AT&T">AT&T<br>
+        <input type='radio' name='contact_provider' value="T-Mobile">T-Mobile<br>
+        <input type='radio' name='contact_provider' value="Virgin">Virgin Mobile<br>
+        <input type='radio' name='contact_provider' value="Sprint">Sprint<br>
+        <input type='radio' name='contact_provider' value="Verizon">Verizon<br>
+        <input type='radio' name='contact_provider' value="USCellular">US Cellular<br>
+
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save Profile</button>
+    </p>
+</form>
+{% endblock %}
