@@ -5,10 +5,10 @@
     <h1>{{ msg }}</h1>
     
     <a href="sms:+1{{ contact_number }}&body=SHOUT:%2520{{ profile_name }}%252C%2520needs%2527d%2520your%2520help%2520at%2520an%2520{{ profile_location }}">
-    <img src="/static/speaker-transp.png" alt="Click here to send a SHOUT">
+    <img src="/static/speaker-transp.png" alt="Click here to send a SHOUT" width="250px" height="325px">
     <br>Click to SHOUT</a><br>
     <hr>
     <button onclick="window.location.href = '/profile/new';">🔊 New Sign Up</button>
-    <button onclick="window.location.href = '/profile/new';">🔊 Your Profile</button>
+    <button onclick="window.location.href = '/profile/{{ profile_id }}';">🔊 Your Profile</button>
     
 {% endblock %}

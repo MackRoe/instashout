@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from get_domain import DomainSMS
 # import config
-# from twilio.rest import Client
 # -- saving for v2 --
 
 app = Flask(__name__)
@@ -11,8 +10,6 @@ client = MongoClient()
 db = client.InstaShout
 profiles = db.profiles
 profile_location = "at home"
-# twilio_client = Client(config.account_sid, config.auth_token)
-# -- saving for v2 --
 
 
 @app.route('/')
@@ -24,7 +21,7 @@ def index():
 
 """ USER STORIES
 Users can create a profile (new/create) √
-Users can view their profile (show)
+Users can view one profile (show) √
 Users can delete their profile (destroy) √
 Users can edit their profile (edit/update) √
 User can send an InstaShout √
@@ -67,8 +64,9 @@ def profile_edit(profile_id):
     profile = profiles.find_one({'_id': ObjectId(profile_id)})
     return render_template('profile_edit.html', profile=profile)
 
-@app.route('/profiles/<profile_id>', methods=['POST'])
-def profiles_update(profile_id):
+@app.route('/profiles/edit', methods=['POST'])
+def profiles_update():
+    active_user = request.form['profile_id']
     """Submit an edited profile"""
     updated_profile = {
         'profile_name': request.form.get('profile_name'),
@@ -77,17 +75,17 @@ def profiles_update(profile_id):
         'contact_provider': request.form.get('contact_provider')
     }
     profiles.update_one(
-        {'_id': ObjectId(profile_id)},
+        {'_id': ObjectId(active_user)},
         {'$set': updated_profile})
 
     active_user = ObjectId("5da7949afd809f6f7ef35e84")
-    return redirect(url_for('profile_view'), profile_id = active_user)
+    return redirect(url_for('profile_view', profile_id=active_user))
 
 @app.route('/profiles/<profile_id>/delete', methods=['POST'])
 def profiles_delete(profile_id):
     """Delete profile"""
     profiles.delete_one({'_id': ObjectId(profile_id)})
-    return redirect(url_for('/'))
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

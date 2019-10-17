@@ -2,7 +2,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method='POST' action='/profiles/{{ profile_id }}'>
+<form method='POST' action='/profiles/edit'>
+    <input type='hidden' value='{{profile._id}}' name='profile_id'>
     <fieldset>
         <legend>Edit profile</legend>
         <!-- Profile Name -->
