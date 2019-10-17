@@ -59,7 +59,7 @@ def profile_submit():
 def profile_view(profile_id):
     """Show individual profile"""
     profile = profiles.find_one({'_id': ObjectId(profile_id)})
-    return render_template('profile_view.html', profile=profile)
+    return render_template('profile_view.html', profile=profile, msg="🔊 InstaShout 🔊")
 
 @app.route('/profile/<profile_id>/edit')
 def profile_edit(profile_id):

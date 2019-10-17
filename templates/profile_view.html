@@ -1,7 +1,11 @@
 <!-- templates/profile_view.html -->
 {% extends 'base.html' %}
 
+
+
 {% block content %}
+
+{% include '/partials/header.html' %}
 
     <h3> User Info </h3>
     <p>{{ profile.profile_name }}<br>
@@ -14,9 +18,12 @@
     {{ profile._id }}
 
     <hr>
+    <!-- Back button -->
     {{ profile_id }}
-    <p><a href='/profile/{{ profile._id }}/edit'>Edit</a></p>
-    <a href="/">Back</a>
+    <button onclick="window.location.href = '/profile/{{ profile._id }}/edit';">🔊 Edit Your Profile</button>
+    <button onclick="window.location.href = '/';">🔊 Back to InstaShout</button>
+    
+
     <!-- Delete button -->
     <p><form method='POST' action='/profiles/{{ profile_id }}/delete'>
     <button type='submit'>Delete</button>
