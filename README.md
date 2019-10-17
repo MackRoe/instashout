@@ -1,4 +1,4 @@
-[logo](https://github.com/MackRoe/instashout/blob/master/static/speaker-transp.png)
+![logo](https://github.com/MackRoe/instashout/blob/master/static/speaker-transp.png)
 
 # PROJECT MOTIVATION
     The motivation behind this project was to provide a preparedness level personal security
