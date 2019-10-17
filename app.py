@@ -1,15 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from get_domain import DomainSMS
+import config
+#from twilio.rest import Client
+# -- saving for v2 --
 
 app = Flask(__name__)
 client = MongoClient()
 db = client.InstaShout
 profiles = db.profiles
+profile_location = "at home"
+# twilio_client = Client(config.account_sid, config.auth_token)
+# -- saving for v2 --
+
 
 @app.route('/')
 def index():
     """Return homepage."""
+    # provider_domain = DomainSMS.assign_domain(contact_provider)
     active_user = ObjectId("5da7949afd809f6f7ef35e84")
     return render_template('home.html', msg="🔊 InstaShout 🔊", profile_id=active_user)
 
@@ -18,7 +27,7 @@ Users can create a profile (new/create) √
 Users can view their profile (show)
 Users can delete their profile (destroy) √
 Users can edit their profile (edit/update) √
-User can send an InstaShout
+User can send an InstaShout √
 User is informed their InstaShout has been sent
 """
 
@@ -79,6 +88,7 @@ def profiles_delete(profile_id):
     """Delete profile"""
     profiles.delete_one({'_id': ObjectId(profile_id)})
     return redirect(url_for('/'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -3,7 +3,13 @@
 
 {% block content %}
     <h1>{{ msg }}</h1>
-    <br>
-    <a href="/profile/new">Create Profile</a><br>
-    <a href='/profile/{{ profile_id }}'>View Profile</a>
+    
+    <a href="sms:+1{{ contact_number }}&body=SHOUT:%2520{{ profile_name }}%252C%2520needs%2527d%2520your%2520help%2520at%2520an%2520{{ profile_location }}">
+    <img src="/static/speaker-transp.png" alt="Click here to send a SHOUT">
+    <br>SHOUT:</a><br>
+    
+    <p>
+    🔊<a href="/profile/new">Create Profile</a> 🔊
+    <a href='/profile/{{ profile_id }}'>View Profile</a> 🔊
+    </p>
 {% endblock %}
