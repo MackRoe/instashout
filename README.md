@@ -16,3 +16,5 @@
     C.R.U.D. for profile creation, viewing, updating, and removing
     Flask routing
     MongoDB/PyMongo/MongoD
+
+https://medium.com/@elainemusic51/instashout-c3b2318ad244?sk=89a01e173f8122e4d2e08f4452cbbb0d
