@@ -1,4 +1,18 @@
+body {
+    align-self: center;
+}
+
 .logo {
     width: "75%";
     height: "75%";
 }
+
+/* mobile styling basic - https://zellwk.com/blog/how-to-write-mobile-first-css/ */
+.content {
+
+    @media (min-width: 800px) {
+      float: left;
+      width: 60%;
+    }
+  }
+ 
